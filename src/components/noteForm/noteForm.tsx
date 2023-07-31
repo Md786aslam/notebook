@@ -6,7 +6,7 @@ const NoteForm = () => {
     const [note, setNote] = useState({ title: "", content: "" })
     const createNote = api.note.create.useMutation()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e:any) => {
         e.preventDefault()
         console.log(note)
         createNote.mutate({
