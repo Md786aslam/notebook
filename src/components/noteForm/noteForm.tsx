@@ -6,13 +6,11 @@ const NoteForm = () => {
     const [note, setNote] = useState({ title: "", content: "" })
     const createNote = api.note.create.useMutation()
 
-    const handleSubmit = (e:any) => {
+    const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
-        console.log(note)
         createNote.mutate({
             ...note, topicId: "clkl3t2fm0003utygvif6kae8"
         })
-        console.log("Note added successfully")
         setNote({ title: "", content: "" })
     }
     return (
@@ -26,14 +24,15 @@ const NoteForm = () => {
             <div>
 
             </div>
+            <form onSubmit={handleSubmit} className="hidden">
+                <input type="text" placeholder="Title" name="title" onChange={(e) => setNote({ ...note, title: e.target.value })} value={note.title} />
+                <input type="text" placeholder="Content" name="content" value={note.content} onChange={(e) => setNote({ ...note, content: e.target.value })} />
+                <button type="submit">Add note</button>
+            </form>
 
         </div>
 
-        // <form onSubmit={handleSubmit}>
-        //     <input type="text" placeholder="Title" name="title" onChange={(e) => setNote({ ...note, title: e.target.value })} value={note.title} />
-        //     <input type="text" placeholder="Content" name="content" value={note.content} onChange={(e) => setNote({ ...note, content: e.target.value })} />
-        //     <button type="submit">Add note</button>
-        // </form>
+
     )
 }
 export default NoteForm;

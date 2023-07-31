@@ -1,6 +1,5 @@
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 
 const Navbar = () => {
     const { data: sessionData } = useSession();
@@ -13,7 +12,7 @@ const Navbar = () => {
             <div className="flex gap-3 items-center">
                 <div className="flex items-center gap-2">
                     {sessionData && <>
-                        <img src={sessionData?.user?.image || ""} width={40} height={40} alt="Profile pic" className="rounded-full" />
+                        <img src={sessionData?.user?.image ?? ""} width={40} height={40} alt="Profile pic" className="rounded-full" />
                         <span className="text-white font-sm font-semibold">{sessionData?.user?.name}</span></>}
                 </div>
                 <button
